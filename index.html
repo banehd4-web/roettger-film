@@ -1,1 +1,394 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leon Röttger | Portfolio - Film</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f4f7f5;
+            --sidebar-bg: #f9f9f9;
+            --text-color: #444;
+            --heading-color: #1a1a1a;
+            --accent-color: #2a9d8f;
+            --accent-color-light: #e9f5f4;
+            --border-color: #e8e8e8;
+            --shadow: 0 4px 20px rgba(0,0,0,0.06);
+            --font-body: 'Inter', sans-serif;
+            --font-heading: 'Manrope', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .wrapper {
+            display: flex;
+        }
+
+        /* --- Sidebar --- */
+        .left-sidebar {
+            width: 30%;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: var(--sidebar-bg);
+            padding: 40px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border-color);
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 30px; 
+        }
+        .sidebar-header img {
+            width: 60px; 
+            height: 60px;
+            border-radius: 50%; 
+            margin-right: 15px; 
+            border: 2px solid var(--accent-color); 
+            object-fit: cover; 
+        }
+
+        .sidebar-header h1 {
+            font-family: var(--font-heading);
+            font-size: 1.6em; 
+            font-weight: 800; 
+            color: var(--heading-color);
+            margin: 0; 
+            line-height: 1.2;
+        }
+
+        .sidebar-header h2 {
+            font-family: var(--font-body);
+            font-size: 0.9em; 
+            font-weight: 400; 
+            color: var(--accent-color);
+            margin: 0; 
+            line-height: 1.2;
+        }
+
+        .lang-switcher {
+            margin-bottom: 20px;
+        }
+        .lang-switcher button {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: var(--font-heading);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .lang-switcher button.active-lang-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        .sidebar-nav li {
+            margin: 18px 0;
+        }
+        .sidebar-nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.0em; 
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 5px 10px;
+        }
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            color: var(--accent-color);
+        }
+        .sidebar-nav a.active::before {
+            content: '';
+            position: absolute;
+            left: -15px; 
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px; 
+            height: 1.2em; 
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .sidebar-section {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        .sidebar-section h3 {
+            font-family: var(--font-heading);
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #999;
+            margin-bottom: 10px;
+        }
+        
+        .contact-footer {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .social-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 12px;
+        }
+        .social-links a {
+            font-size: 1.2em;
+            width: 35px;
+            height: 35px;
+            background-color: var(--accent-color-light);
+            color: var(--accent-color);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* --- Main Content --- */
+        .main-content {
+            width: 70%;
+            margin-left: 30%;
+            padding: 80px;
+            box-sizing: border-box;
+        }
+
+        .main-content section {
+            margin-bottom: 20px;
+            padding-bottom: 60px;
+            scroll-margin-top: 100px;
+        }
+
+        #languages {
+            padding-bottom: 150px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 1.8em;
+            color: var(--heading-color);
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .subsection-title {
+            font-family: var(--font-heading);
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--heading-color);
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        /* --- Grid --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            align-items: start;
+        }
+        .project-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .project-item h4 {
+            font-family: var(--font-heading);
+            height: 3.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+        }
+        .project-item iframe {
+            width: 100%;
+            max-width: 100%;
+            aspect-ratio: 16/9;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* --- Media Queries (Fixed) --- */
+        @media (max-width: 1024px) {
+            .left-sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border-color); padding: 30px 20px; }
+            .main-content { width: 100%; margin-left: 0; padding: 40px 20px; }
+            .sidebar-nav { display: flex; flex-direction: column; align-items: flex-start; gap: 5px; margin: 20px 0; }
+            .sidebar-nav li { width: 100%; margin: 5px 0; }
+            .sidebar-nav a { padding: 10px 15px; border-radius: 8px; width: 100%; box-sizing: border-box; }
+            .sidebar-nav a.active { background-color: var(--accent-color-light); }
+            .sidebar-nav a.active::before { left: 0; height: 100%; width: 4px; }
+        }
+
+        @media (max-width: 768px) {
+            .left-sidebar { display: none; }
+            .mobile-header { display: block; }
+            .wrapper { display: block; }
+            .main-content { width: 100%; margin-left: 0; padding: 20px 14px; }
+            .section-title { font-size: 1.45em; margin-bottom: 10px; }
+            .project-grid { grid-template-columns: 1fr; gap: 14px; }
+        }
+        
+        .mobile-header {
+            display: none;
+            background-color: var(--sidebar-bg);
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+        }
+        .mobile-header img {
+            width: 70px; height: 70px; border-radius: 50%;
+            border: 2px solid var(--accent-color); object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .mobile-header h1 {
+            font-family: var(--font-heading); font-size: 1.4em;
+            font-weight: 800; color: var(--heading-color); margin: 0 0 4px;
+        }
+
+        .site-footer {
+            background-color: var(--sidebar-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 30px 40px;
+            font-size: 0.8em;
+            color: #999;
+            text-align: center;
+        }
+        .site-footer a { color: var(--accent-color); text-decoration: none; }
+
+        [data-lang] { display: none; }
+        .lang-active { display: initial; }
+        .lang-active-block { display: block; }
+    </style>
+</head>
+<body>
+    <header class="mobile-header">
+        <img src="Leon Röttger.jpg" alt="Leon Röttger">
+        <h1>Leon Röttger</h1>
+        <h2 data-lang="de">Filmprojekte</h2>
+        <h2 data-lang="en">Film Projects</h2>
+        <div class="lang-switcher">
+            <button class="mobile-lang-de active-lang-btn" onclick="document.getElementById('lang-de-btn').click()">DE</button>
+            <button class="mobile-lang-en" onclick="document.getElementById('lang-en-btn').click()">EN</button>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <aside class="left-sidebar">
+            <div class="sidebar-header">
+                <img src="Leon Röttger.jpg" alt="Profilbild von Leon Röttger">
+                <div class="sidebar-header-text">
+                    <h1>Leon Röttger</h1>
+                    <h2 data-lang="de">Film & Produktion</h2>
+                    <h2 data-lang="en">Film & Production</h2>
+                </div>
+            </div>
+
+            <div class="lang-switcher">
+                <button id="lang-de-btn" class="active-lang-btn">DE</button>
+                <button id="lang-en-btn">EN</button>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li><a href="index.html"><span data-lang="de">Zurück zum Portfolio</span><span data-lang="en">Back to Portfolio</span></a></li>
+            </ul>
+
+            <div class="sidebar-section">
+                <h3>Kontakt</h3>
+                <div class="contact-footer">
+                    <ul class="social-links">
+                        <li><a href="tel:+4917690778876"><i class="fa-solid fa-phone"></i></a></li>
+                        <li><a href="mailto:leon.roettger@gmx.net"><i class="fa-solid fa-envelope"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section id="film">
+                <h2 class="section-title"><span data-lang="de">Filmprojekte</span><span data-lang="en">Film Projects</span></h2>
+                <div class="project-grid">
+                    <div class="project-item">
+                        <h4>Maurice Morgenstern - Kurzfilm</h4>
+                        <iframe src="https://www.youtube.com/embed/3qIVPFQiXoA" allowfullscreen></iframe>
+                        <p style="font-size: 0.85em; color: #777;">
+                            <span data-lang="de">Projektarbeit während meines Studiums an der Universität Siegen.</span>
+                            <span data-lang="en">Project during my studies at the University of Siegen.</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const langDeBtn = document.getElementById('lang-de-btn');
+            const langEnBtn = document.getElementById('lang-en-btn');
+            function setLanguage(lang) {
+                document.querySelectorAll('[data-lang]').forEach(el => {
+                    el.style.display = (el.dataset.lang === lang) ? 'inline' : 'none';
+                    if (['P', 'H1', 'H2', 'H3', 'DIV', 'LI', 'SECTION'].includes(el.tagName)) {
+                        if (el.style.display === 'inline') el.style.display = 'block';
+                    }
+                });
+                langDeBtn.classList.toggle('active-lang-btn', lang === 'de');
+                langEnBtn.classList.toggle('active-lang-btn', lang === 'en');
+            }
+            langDeBtn.addEventListener('click', () => setLanguage('de'));
+            langEnBtn.addEventListener('click', () => setLanguage('en'));
+            setLanguage('de');
+        });
+    </script>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Leon Röttger. Alle Rechte vorbehalten.</p>
+    </footer>
+</body>
+</html>
 
