@@ -3,261 +3,534 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leon Röttger | Film & Marketing Portfolio</title>
+    <title>Leon Röttger | Creative Production & Distribution Strategy</title>
+    
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: #0f1110; /* Dunkler, cinematischer Hintergrund */
-            --sidebar-bg: #161817;
-            --text-color: #e0e0e0;
-            --heading-color: #ffffff;
-            --accent-color: #d4af37; /* Gold-Akzent (wie Filmpreise/Klassik) */
-            --accent-color-light: rgba(212, 175, 55, 0.1);
-            --border-color: #2a2a2a;
-            --shadow: 0 10px 30px rgba(0,0,0,0.5);
-            --font-body: 'Inter', sans-serif;
-            --font-heading: 'Manrope', sans-serif;
-            --font-mono: 'Space Mono', monospace;
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --accent: #ffffff;
+            --border: #222222;
+            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --max-width-content: 800px;
+            --grid-gap: 32px;
         }
 
-        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: var(--font-body);
-            margin: 0; padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        .wrapper { display: flex; }
+        /* --- Global Layout --- */
+        section { padding: 80px 5vw; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
+        a { color: inherit; text-decoration: none; transition: var(--transition-smooth); }
 
-        /* --- Sidebar --- */
-        .left-sidebar {
-            width: 25%; height: 100vh; position: fixed;
-            background-color: var(--sidebar-bg);
-            padding: 40px; box-sizing: border-box;
-            display: flex; flex-direction: column;
-            border-right: 1px solid var(--border-color);
-            z-index: 100;
+        /* --- Site Header (Logo) --- */
+        .site-header {
+            position: fixed; 
+            top: 30px; 
+            left: 5vw; 
+            z-index: 1000;
+        }
+        .site-logo {
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
+            text-decoration: none;
+            text-transform: uppercase;
         }
 
-        .sidebar-header img {
-            width: 80px; height: 80px; border-radius: 50%;
-            border: 2px solid var(--accent-color);
-            object-fit: cover; margin-bottom: 20px;
+        /* --- Language Switcher --- */
+        .lang-toggle {
+            position: fixed; top: 30px; right: 5vw; z-index: 1000;
+            display: flex; gap: 8px;
         }
+        .lang-btn {
+            background: none; border: 1px solid var(--border); padding: 4px 10px;
+            font-size: 0.7rem; cursor: pointer; transition: var(--transition-smooth);
+            font-weight: 600; text-transform: uppercase; color: var(--text-muted);
+        }
+        .lang-btn.active { color: var(--text-main); border-color: var(--text-main); }
 
-        .sidebar-header h1 {
-            font-family: var(--font-heading); font-size: 1.5em;
-            font-weight: 800; color: var(--heading-color); margin: 0;
-        }
+        /* --- Language Visibility Logic --- */
+        [data-lang="en"] { display: none !important; }
+        .lang-en [data-lang="de"] { display: none !important; }
+        .lang-en [data-lang="en"] { display: block !important; }
+        .lang-en span[data-lang="en"], .lang-en a[data-lang="en"] { display: inline-block !important; }
+        body:not(.lang-en) [data-lang="de"] { display: block !important; }
+        body:not(.lang-en) span[data-lang="de"], body:not(.lang-en) a[data-lang="de"] { display: inline-block !important; }
 
-        .sidebar-header h2 {
-            font-size: 0.8em; text-transform: uppercase;
-            letter-spacing: 2px; color: var(--accent-color); margin: 5px 0 30px;
+        /* --- Hero Section --- */
+        .hero {
+            height: 80vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center; padding: 0 10vw;
         }
+        .hero h1 { font-size: clamp(2rem, 6vw, 4rem); margin-bottom: 16px; line-height: 1.1; }
+        .hero h2 { font-size: clamp(1rem, 2.2vw, 1.4rem); font-weight: 300; color: var(--text-muted); max-width: 900px; margin-bottom: 40px; line-height: 1.4; }
 
-        .sidebar-nav { list-style: none; padding: 0; margin: 0; }
-        .sidebar-nav li { margin: 15px 0; }
-        .sidebar-nav a {
-            text-decoration: none; color: #888;
-            font-family: var(--font-heading); font-weight: 600;
-            transition: 0.3s; font-size: 0.9em;
-        }
-        .sidebar-nav a:hover, .sidebar-nav a.active { color: var(--accent-color); }
+        .hero-ctas { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .btn-main { display: inline-block; padding: 16px 32px; background-color: var(--accent); color: #000; font-weight: 600; font-size: 0.9rem; transition: var(--transition-smooth); }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,255,255,0.1); }
+        .btn-secondary-group { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+        .btn-secondary { font-size: 0.8rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; border-bottom: 1px solid var(--text-main); padding-bottom: 2px; }
+        .btn-secondary:hover { color: var(--text-muted); border-color: var(--text-muted); }
 
-        /* --- Main Content --- */
-        .main-content {
-            width: 75%; margin-left: 25%;
-            padding: 60px 80px; box-sizing: border-box;
-        }
+        /* --- Section Titles --- */
+        .section-title { font-size: 1.6rem; margin-bottom: 32px; border-bottom: 1px solid var(--border); padding-bottom: 12px; display: inline-block; }
 
-        .section-title {
-            font-family: var(--font-heading); font-size: 2em;
-            color: var(--heading-color); margin-bottom: 40px;
-            border-bottom: 2px solid var(--accent-color);
-            display: inline-block; padding-bottom: 10px;
-        }
-
-        /* --- Project Grid --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px; margin-bottom: 80px;
-        }
-
-        .card {
-            background: var(--sidebar-bg);
-            border-radius: 12px; overflow: hidden;
-            box-shadow: var(--shadow); transition: 0.4s;
-            border: 1px solid var(--border-color);
-        }
-        .card:hover { transform: translateY(-10px); border-color: var(--accent-color); }
+        /* --- Grid & Cards --- */
+        .work-grid { display: grid; grid-template-columns: repeat(1, 1fr); gap: 48px; margin-bottom: 48px; }
+        .work-item { position: relative; background-color: #111; overflow: hidden; border: 1px solid var(--border); transition: var(--transition-smooth); }
+        .work-item:not(.embed-item) { aspect-ratio: 16 / 9; cursor: pointer; }
+        .embed-item { padding-bottom: 0; height: auto; }
         
-        .card-content { padding: 25px; }
-        .card-tag {
-            font-family: var(--font-mono); font-size: 0.7em;
-            color: var(--accent-color); text-transform: uppercase;
-            margin-bottom: 10px; display: block;
-        }
-        .card h3 { margin: 0 0 10px; font-size: 1.2em; color: var(--heading-color); }
-        .card p { font-size: 0.9em; color: #aaa; margin-bottom: 20px; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        
+        .insta-container { width: 100%; height: 650px; overflow: hidden; background: #fff; }
+        .insta-container iframe { width: 100%; height: 100%; border: 0; }
 
-        .video-container {
-            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
-        }
-        .video-container iframe {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+        .work-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 1; transition: var(--transition-smooth); padding: 32px; text-align: center; pointer-events: none; }
+        .work-item:hover .work-overlay { opacity: 0; }
+        
+        .work-overlay h3 { font-size: 1.4rem; margin-bottom: 8px; color: #fff; }
+        .work-overlay p { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+        /* --- Experience Blocks --- */
+        .applied-experience { border-left: 1px solid var(--border); padding-left: 24px; margin-top: 32px; max-width: 850px; margin-bottom: 48px; }
+        .applied-label { font-size: 1.1rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; display: block; font-weight: 600; }
+        .exp-item { margin-bottom: 28px; }
+        .exp-item h4 { font-size: 1.05rem; margin-bottom: 2px; }
+        .exp-item .meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px; }
+        .exp-item .desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px; line-height: 1.6; }
+
+        /* --- Credits List --- */
+        .credits-list { margin-top: 40px; width: 100%; border-top: 1px solid var(--border); padding-top: 32px; }
+        .credit-row { display: grid; grid-template-columns: 60px 1.5fr 2fr; gap: 20px; padding: 12px 0; border-bottom: 1px solid #111; font-size: 0.85rem; }
+        .credit-year { color: var(--text-muted); font-weight: 600; }
+        .credit-title { font-weight: 600; }
+        .credit-desc { color: var(--text-muted); }
+
+        /* --- Education & Skills --- */
+        .experience-grid { display: grid; grid-template-columns: 1fr; gap: 60px; }
+        .skill-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skill-tag { padding: 6px 14px; border: 1px solid var(--border); font-size: 0.8rem; border-radius: 100px; background: transparent; color: var(--text-muted); transition: var(--transition-smooth); }
+        .skill-tag:hover { border-color: var(--text-main); color: var(--text-main); }
+
+        /* --- Footer --- */
+        footer { padding: 80px 5vw; text-align: center; border-top: 1px solid var(--border); }
+        .social-links { display: flex; justify-content: center; gap: 24px; font-size: 0.85rem; color: var(--text-muted); margin-top: 32px; }
+        .social-links a:hover { color: var(--text-main); }
+
+        /* --- Legal Modals --- */
+        .legal-footer { margin-top: 40px; display: flex; justify-content: center; gap: 20px; font-size: 0.7rem; color: var(--text-muted); }
+        .legal-footer a { cursor: pointer; text-decoration: underline; }
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); overflow-y: auto; padding: 60px 20px; }
+        .modal-content { background-color: #111; margin: auto; padding: 40px; border: 1px solid var(--border); width: 100%; max-width: 700px; text-align: left; }
+        .modal-content h2 { margin-bottom: 24px; font-size: 1.5rem; }
+        .modal-content h3 { margin-top: 24px; margin-bottom: 12px; font-size: 1rem; color: var(--text-main); }
+        .modal-content p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.6; }
+        .close-modal { color: var(--text-main); float: right; font-size: 28px; font-weight: bold; cursor: pointer; line-height: 1; }
+
+        @media (min-width: 768px) {
+            .work-grid { grid-template-columns: repeat(2, 1fr); }
+            .experience-grid { grid-template-columns: 1fr 1fr; }
+            section { padding: 80px 10vw; }
         }
 
-        /* --- Script / Drehbuch Style --- */
-        .script-card {
-            display: flex; align-items: center;
-            background: rgba(255,255,255,0.03);
-            border-radius: 8px; padding: 20px;
-            margin-bottom: 20px; border: 1px dashed #444;
-            transition: 0.3s; text-decoration: none; color: inherit;
-        }
-        .script-card:hover { background: var(--accent-color-light); border-color: var(--accent-color); }
-        .script-icon { font-size: 2em; margin-right: 20px; color: var(--accent-color); }
-
-        /* --- Marketing / Social Media Grid --- */
-        .marketing-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
-        }
-        .marketing-item {
-            border-radius: 8px; overflow: hidden; height: 400px; border: 1px solid var(--border-color);
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 1024px) {
-            .left-sidebar { width: 100%; height: auto; position: relative; border-right: none; }
-            .main-content { width: 100%; margin-left: 0; padding: 40px 20px; }
-            .wrapper { flex-direction: column; }
-        }
-
-        [data-lang] { display: none; }
-        .lang-active { display: initial; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .hero h1, .hero h2, .hero-ctas { animation: fadeIn 1s ease-out forwards; }
     </style>
 </head>
 <body>
 
-    <div class="wrapper">
-        <aside class="left-sidebar">
-            <div class="sidebar-header">
-                <img src="Leon Röttger.jpg" alt="Leon Röttger">
-                <h1>Leon Röttger</h1>
-                <h2 data-lang="de">Film & Digital Strategy</h2>
-                <h2 data-lang="en">Film & Digital Strategy</h2>
+    <!-- SITE HEADER (Dein Name) -->
+    <div class="site-header">
+        <a href="#" class="site-logo">Leon Röttger</a>
+    </div>
+
+    <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-de">DE</button>
+        <button class="lang-btn" id="btn-en">EN</button>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1 data-lang="de">Creative Production & Distribution Strategy</h1>
+        <h1 data-lang="en">Creative Production & Distribution Strategy</h1>
+        
+        <h2 data-lang="de">Die Verbindung von filmischer Akquise und Pre-Production mit marktorientiertem Audience-Engagement ist heute wichtiger denn je. Ich begleite Projekte in der frühen Stoffentwicklung und der strategischen PR und Distribution.</h2>
+        <h2 data-lang="en">Bridging the gap between cinematic storytelling and market-driven audience engagement. Guiding projects from early-stage development and pre-production through to strategic PR and distribution.</h2>
+        
+        <div class="hero-ctas">
+            <a href="mailto:leon.roettger@gmx.net" class="btn-main" data-lang="de">Kontakt aufnehmen</a>
+            <a href="mailto:leon.roettger@gmx.net" class="btn-main" data-lang="en">Get in touch</a>
+            <div class="btn-secondary-group">
+                <a href="Lebenslauf_Leon_Roettger.pdf" target="_blank" class="btn-secondary" data-lang="de">Lebenslauf (PDF)</a>
+                <a href="Lebenslauf_Leon_Roettger.pdf" target="_blank" class="btn-secondary" data-lang="en">Resume (PDF)</a>
+                <a href="Zeugnisse_Referenzen.pdf" target="_blank" class="btn-secondary" data-lang="de">Zeugnisse & Referenzen (PDF)</a>
+                <a href="Zeugnisse_Referenzen.pdf" target="_blank" class="btn-secondary" data-lang="en">Certificates & References (PDF)</a>
             </div>
+        </div>
+    </section>
 
-            <ul class="sidebar-nav">
-                <li><a href="#films">Kurzfilme / Production</a></li>
-                <li><a href="#scripts">Screenwriting / Drehbuch</a></li>
-                <li><a href="#marketing">Film Marketing & Social</a></li>
-                <li style="margin-top: 30px;"><a href="index.html" style="color: var(--accent-color);">← Portfolio Home</a></li>
-            </ul>
-
-            <div style="margin-top: auto;">
-                <div class="lang-switcher">
-                    <button id="lang-de-btn" style="background:none; border:1px solid #444; color:#fff; cursor:pointer;">DE</button>
-                    <button id="lang-en-btn" style="background:none; border:1px solid #444; color:#fff; cursor:pointer;">EN</button>
+    <!-- CONTENT SECTION 1: PROD & DEV -->
+    <section class="container" style="padding-top: 0; padding-bottom: 20px; margin-top: -40px;">
+        <h2 class="section-title" data-lang="de">Development & Production</h2>
+        <h2 class="section-title" data-lang="en">Development & Production</h2>
+        
+        <div class="work-grid">
+            <!-- Maurice Morgenstern -->
+            <div class="work-item embed-item">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/3qIVPFQiXoA" allowfullscreen></iframe>
+                </div>
+                <div class="work-overlay">
+                    <h3 data-lang="de">Maurice Morgenstern</h3>
+                    <h3 data-lang="en">Maurice Morgenstern</h3>
+                    <p data-lang="de">Drehbuch, Kamera & Regie</p>
+                    <p data-lang="en">Script, Camera & Direction</p>
+                    <span style="font-size: 0.75rem; margin-top: 10px; color: #888;" data-lang="de">Uni Siegen | Schnitt: Avid</span>
+                    <span style="font-size: 0.75rem; margin-top: 10px; color: #888;" data-lang="en">Uni Siegen | Edit: Avid</span>
                 </div>
             </div>
-        </aside>
+            <!-- The White Line -->
+            <div class="work-item" style="background-color: var(--bg-secondary); display: flex; align-items: center; justify-content: center; padding: 32px; text-align: center;">
+                <div class="work-overlay" style="opacity: 1; position: relative; background: none;">
+                    <span class="section-label" style="margin-bottom: 12px;" data-lang="de">Drehbuchprojekt (Spec Script)</span>
+                    <span class="section-label" style="margin-bottom: 12px;" data-lang="en">Spec Script</span>
+                    <h3>The White Line (AT)</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-top: 8px;" data-lang="de">Status: Treatment-Phase</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-top: 8px;" data-lang="en">Status: Treatment Phase</p>
+                </div>
+            </div>
+        </div>
 
-        <main class="main-content">
+        <div class="applied-experience">
+            <span class="applied-label" data-lang="de">Angewandt in</span>
+            <span class="applied-label" data-lang="en">Applied in</span>
             
-            <!-- SECTION: SHORT FILMS -->
-            <section id="films">
-                <h2 class="section-title">Production & Directing</h2>
-                <div class="grid">
-                    <div class="card">
-                        <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/3qIVPFQiXoA" allowfullscreen></iframe>
-                        </div>
-                        <div class="card-content">
-                            <span class="card-tag">Short Film | Fiction</span>
-                            <h3>Maurice Morgenstern</h3>
-                            <p data-lang="de">Ein cineastisches Projekt, das psychologische Tiefe und visuelles Storytelling verbindet. Realisiert während des Studiums an der Uni Siegen.</p>
-                            <p data-lang="en">A cinematic project blending psychological depth and visual storytelling. Realized during studies at the University of Siegen.</p>
-                        </div>
-                    </div>
-                    <!-- Hier können weitere Filme folgen -->
-                </div>
-            </section>
+            <div class="exp-item">
+                <h4 data-lang="de">Content Creator im Datenmanagement</h4>
+                <h4 data-lang="en">Content Creator in Data Management</h4>
+                <p class="meta">Westnetz GmbH, Dortmund</p>
+                <p class="desc" data-lang="de">Contentkonzeption, -produktion und -distribution. Reichweitensteigerung um ca. 100%. Podcast-Produktion und Projektmanagement mit Fokus auf messbare Sichtbarkeit.</p>
+                <p class="desc" data-lang="en">Content conception, production, and distribution. Increased reach by approx. 100%. Podcast production and project management with a focus on measurable visibility.</p>
+            </div>
 
-            <!-- SECTION: SCREENWRITING -->
-            <section id="scripts" style="margin-bottom: 80px;">
-                <h2 class="section-title">Screenwriting</h2>
-                <div class="script-list">
-                    <a href="#" class="script-card">
-                        <div class="script-icon"><i class="fa-solid fa-file-lines"></i></div>
-                        <div>
-                            <span class="card-tag">Feature Film (In Development)</span>
-                            <h3>Titel deines Drehbuchs</h3>
-                            <p data-lang="de">Logline: Ein kurzer, packender Satz über den Inhalt deines Drehbuchs. Fokus auf Drama/Thriller.</p>
-                            <p data-lang="en">Logline: A short, gripping sentence about your script's content. Focus on Drama/Thriller.</p>
-                        </div>
-                    </a>
-                    <a href="#" class="script-card">
-                        <div class="script-icon"><i class="fa-solid fa-file-pdf"></i></div>
-                        <div>
-                            <span class="card-tag">Short Film Script</span>
-                            <h3>Exposition: Schattenseiten</h3>
-                            <p data-lang="de">Ein 15-seitiges Kurzfilmdrehbuch über urbane Isolation.</p>
-                            <p data-lang="en">A 15-page short film script about urban isolation.</p>
-                        </div>
-                    </a>
-                </div>
-            </section>
+            <div class="exp-item">
+                <h4 data-lang="de">Personal Assistant (Fokus: Drehbuchakquise)</h4>
+                <h4 data-lang="en">Personal Assistant (Focus: Script Acquisition)</h4>
+                <p class="meta">WHAT THE HERO WANTS, Remote</p>
+                <p class="desc" data-lang="de">Strategische Drehbuchakquise, Unterstützung der Pressearbeit und Erstellung von Filmplakaten.</p>
+                <p class="desc" data-lang="en">Strategic script acquisition, support in press relations, and creation of movie posters.</p>
+            </div>
+        </div>
+    </section>
 
-            <!-- SECTION: MARKETING -->
-            <section id="marketing">
-                <h2 class="section-title">Film Marketing & Social Media</h2>
-                <p style="margin-bottom: 30px; color: #888;">Konzeption und Distribution von Kampagnen für Independent-Kino und Verleih.</p>
-                <div class="marketing-grid">
-                    <div class="marketing-item">
-                        <iframe src="https://www.instagram.com/p/C74B9NyolwZ/embed" width="100%" height="100%" frameborder="0"></iframe>
-                    </div>
-                    <div class="marketing-item">
-                        <iframe src="https://www.instagram.com/p/C8mrlE6hAPk/embed" width="100%" height="100%" frameborder="0"></iframe>
-                    </div>
+    <!-- CONTENT SECTION 2: PR & DIST -->
+    <section class="container" style="padding-top: 0; padding-bottom: 20px;">
+        <h2 class="section-title" data-lang="de">PR & Distribution Strategy</h2>
+        <h2 class="section-title" data-lang="en">PR & Distribution Strategy</h2>
+        
+        <div class="work-grid">
+            <!-- Screening: SINNERS -->
+            <div class="work-item embed-item">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/5rFYhMA1tV8" allowfullscreen></iframe>
                 </div>
-                <div style="margin-top: 20px; background: var(--sidebar-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color);">
-                    <h3 style="color: var(--accent-color);">Strategy & Results</h3>
-                    <ul style="color: #aaa; font-size: 0.9em;">
-                        <li>Reichweiten-Optimierung für Kinostarts (+100% Engagement)</li>
-                        <li>Zielgruppengenaue Hook-Strategien für Reels & TikTok</li>
-                        <li>B2B Kampagnen-Management für Theatrical Sales</li>
+                <div class="work-overlay">
+                    <h3 data-lang="de">Screening: SINNERS</h3>
+                    <h3 data-lang="en">Screening: SINNERS</h3>
+                    <p data-lang="de">Event-Support: Werkstattgespräch "SINNERS"</p>
+                    <p data-lang="en">Event Support: "SINNERS" Workshop Talk</p>
+                    <span style="font-size: 0.75rem; margin-top: 10px; color: #888;" data-lang="de">Tätigkeit: Akkreditierung, Saal-Vorbereitung & Get-Together Betreuung</span>
+                    <span style="font-size: 0.75rem; margin-top: 10px; color: #888;" data-lang="en">Task: Accreditation, Venue Prep & Get-Together Support</span>
+                </div>
+            </div>
+            <!-- Screening: DUNE -->
+            <div class="work-item embed-item">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/IVu9Nz6fG8Q" allowfullscreen></iframe>
+                </div>
+                <div class="work-overlay">
+                    <h3 data-lang="de">Screening: DUNE: PART TWO (WBD)</h3>
+                    <h3 data-lang="en">Screening: DUNE: PART TWO (WBD)</h3>
+                    <p data-lang="de">Event-Support: Werkstattgespräch</p>
+                    <p data-lang="en">Event Support: Workshop Talk</p>
+                    <span style="font-size: 0.75rem; margin-top: 10px; color: #888;" data-lang="de">Tätigkeit: Gästemanagement, tech. Support & Floormanagement</span>
+                    <span style="font-size: 0.75rem; margin-top: 10px; color: #888;" data-lang="en">Guest Management, tech support & floor management</span>
+                </div>
+            </div>
+            <!-- Instagram 1 -->
+            <div class="work-item embed-item">
+                <div class="insta-container">
+                    <iframe src="https://www.instagram.com/p/C74B9NyolwZ/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                </div>
+                <div class="work-overlay">
+                    <h3 data-lang="de">Social Media Campaigns</h3>
+                    <h3 data-lang="en">Social Media Campaigns</h3>
+                    <p data-lang="de">Content Creation & Asset Design</p>
+                    <p data-lang="en">Content Creation & Asset Design</p>
+                    <span style="font-size: 0.75rem; margin-top: 10px; color: #888;">Busch Media Group</span>
+                </div>
+            </div>
+            <!-- Instagram 2 -->
+            <div class="work-item embed-item">
+                <div class="insta-container">
+                    <iframe src="https://www.instagram.com/reel/C8cYWfGOe5k/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                </div>
+                <div class="work-overlay">
+                    <h3 data-lang="de">Social Media Campaigns</h3>
+                    <h3 data-lang="en">Social Media Campaigns</h3>
+                    <p data-lang="de">Content Creation & Asset Design</p>
+                    <p data-lang="en">Content Creation & Asset Design</p>
+                    <span style="font-size: 0.75rem; margin-top: 10px; color: #888;">Busch Media Group</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="applied-experience">
+            <span class="applied-label" data-lang="de">Angewandt in</span>
+            <span class="applied-label" data-lang="en">Applied in</span>
+
+            <div class="exp-item">
+                <h4 data-lang="de">Freelancer Marketing & Kommunikation</h4>
+                <h4 data-lang="en">Freelance Marketing & Communication</h4>
+                <p class="meta" data-lang="de">Kunden: Filmpresse Meuser Schaffrath Schütz GbR (FFM), Maz & Movie, Warner Bros.</p>
+                <p class="meta" data-lang="en">Clients: Filmpresse Meuser Schaffrath Schütz GbR (FFM), Maz & Movie, Warner Bros.</p>
+                <p class="desc" data-lang="de">Übergreifende Projektarbeit und Mitwirkung an rund 10 Branchenevents. Verfassen von Pressemitteilungen, eigenständige Betreuung von Pressevorführungen, Pflege der Kontaktdatenbank und Akquise von Verlosungsaktionen. Fokus: Steigerung der Medienresonanz.</p>
+                <p class="desc" data-lang="en">Cross-departmental project work and contribution to approx. 10 industry events. Writing press releases, managing press screenings, database maintenance, and sweepstakes acquisition. Focus: increasing media coverage.</p>
+            </div>
+
+            <div class="exp-item">
+                <h4 data-lang="de">Internationale Filmfestspiele Berlin</h4>
+                <h4 data-lang="en">Berlin International Film Festival</h4>
+                <p class="meta">Berlin</p>
+                <p class="desc" data-lang="de">Programmkoordination der Retrospektive, Mitorganisation von Veranstaltungen und Gästemanagement.</p>
+                <p class="desc" data-lang="en">Program coordination for the Retrospective, co-organization of events, and guest management.</p>
+            </div>
+
+            <div class="exp-item">
+                <h4 data-lang="de">Öffentlichkeitsarbeit</h4>
+                <h4 data-lang="en">Public Relations</h4>
+                <p class="meta">Westnetz GmbH, Siegen</p>
+                <p class="desc" data-lang="de">Konzeption digitaler Kommunikationspläne für Recruiting-Events. Planung von Sponsoring-Kooperationen im sechsstelligen Bereich.</p>
+                <p class="desc" data-lang="en">Conception of digital communication plans for recruiting events. Planning of sponsoring cooperations in the six-figure range.</p>
+            </div>
+
+            <div class="exp-item">
+                <h4 data-lang="de">Werkstudent Redakteur & Theatrical Sales Manager</h4>
+                <h4 data-lang="en">Working Student Editor & Theatrical Sales Manager</h4>
+                <p class="meta">Busch Media Group, Hagen</p>
+                <p class="desc" data-lang="de">Adaption von Marketingkampagnen, Social-Media-Asset Erstellung und operatives Kampagnen-Management. B2B-Kundenbetreuung inklusive Konditionsverhandlung.</p>
+                <p class="desc" data-lang="en">Adaptation of marketing campaigns, creation of social media assets, and operational campaign management. B2B customer care including negotiation of terms.</p>
+            </div>
+        </div>
+
+        <!-- BETREUTE FILME -->
+        <div class="credits-list" style="margin-top: 30px;">
+            <span class="applied-label" data-lang="de">Betreute Filme (Auswahl)</span>
+            <span class="applied-label" data-lang="en">Managed Films (Selected)</span>
+
+            <div class="credit-row">
+                <div class="credit-year">2025</div>
+                <div class="credit-title">Blood & Sinners</div>
+                <div class="credit-desc" data-lang="de">Mitwirkung an der deutschen Oscar-Kampagne (WBD)</div>
+                <div class="credit-desc" data-lang="en">Contribution to the German Oscar Campaign (WBD)</div>
+            </div>
+            <div class="credit-row">
+                <div class="credit-year">2024</div>
+                <div class="credit-title">Dune Teil 2</div>
+                <div class="credit-desc" data-lang="de">Mitwirkung an der deutschen Oscar-Kampagne (WBD)</div>
+                <div class="credit-desc" data-lang="en">Contribution to the German Oscar Campaign (WBD)</div>
+            </div>
+            <div class="credit-row">
+                <div class="credit-year">2023</div>
+                <div class="credit-title">Rückkehr nach Korsika</div>
+                <div class="credit-desc" data-lang="de">Vermarktung Deutschland (Filmpresseagentur)</div>
+                <div class="credit-desc" data-lang="en">Marketing Germany (Film Press Agency)</div>
+            </div>
+            <div class="credit-row">
+                <div class="credit-year">2020</div>
+                <div class="credit-title">The Flood - Melodie der Rache</div>
+                <div class="credit-desc" data-lang="de">Trailerschnitt & -premiere (Filmstarts), Social Media Marketing</div>
+                <div class="credit-desc" data-lang="en">Trailer Editing & Premiere (Filmstarts), Social Media Marketing</div>
+            </div>
+            <div class="credit-row">
+                <div class="credit-year">1988*</div>
+                <div class="credit-title">Mapantsula</div>
+                <div class="credit-desc" data-lang="de">Unterstützung bei der Vermarktung des Re-Releases</div>
+                <div class="credit-desc" data-lang="en">Support for the Marketing of the Re-Release</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION & SKILLS -->
+    <section class="container" style="padding-top: 0; padding-bottom: 60px;">
+        <div class="experience-grid">
+            <div>
+                <span class="section-label" data-lang="de">Ausbildung</span>
+                <span class="section-label" data-lang="en">Education</span>
+                <h4 data-lang="de">Universität Siegen</h4>
+                <h4 data-lang="en">University of Siegen</h4>
+                <p class="meta" data-lang="de">B.A. Medienwissenschaften und Literatur, Kultur & Medien</p>
+                <p class="meta" data-lang="en">B.A. Media Studies and Literature, Culture & Media</p>
+                
+                <div style="margin-top: 32px;">
+                    <span class="section-label" data-lang="de">Sprachkenntnisse</span>
+                    <span class="section-label" data-lang="en">Languages</span>
+                    <ul style="list-style: none; font-size: 0.9rem; line-height: 1.8; color: var(--text-muted);">
+                        <li data-lang="de">Deutsch (Muttersprache)</li>
+                        <li data-lang="en">German (Native)</li>
+                        <li data-lang="de">Englisch (Fließend / Wirtschaftsenglisch IHK)</li>
+                        <li data-lang="en">English (Fluent / Business English IHK)</li>
+                        <li data-lang="de">Russisch (Grundkenntnisse)</li>
+                        <li data-lang="en">Russian (Basic Knowledge)</li>
                     </ul>
                 </div>
-            </section>
+            </div>
+            <div>
+                <span class="section-label" data-lang="de">Kompetenzen</span>
+                <span class="section-label" data-lang="en">Skills</span>
+                <div class="skill-list">
+                    <span class="skill-tag">Meta Business Suite</span>
+                    <span class="skill-tag">Adobe Creative Cloud</span>
+                    <span class="skill-tag">CapCut</span>
+                    <span class="skill-tag">DaVinci Resolve</span>
+                    <span class="skill-tag">Avid Media Composer</span>
+                    <span class="skill-tag" data-lang="de">Content Creation</span>
+                    <span class="skill-tag" data-lang="en">Content Creation</span>
+                    <span class="skill-tag" data-lang="de">Community Management</span>
+                    <span class="skill-tag" data-lang="en">Community Management</span>
+                    <span class="skill-tag">WordPress</span>
+                    <span class="skill-tag">Canva</span>
+                    <span class="skill-tag">MyConvento</span>
+                    <span class="skill-tag" data-lang="de">Fotografie</span>
+                    <span class="skill-tag" data-lang="en">Photography</span>
+                    <span class="skill-tag" data-lang="de">Videografie</span>
+                    <span class="skill-tag" data-lang="en">Videography</span>
+                    <span class="skill-tag">Script Editing</span>
+                    <span class="skill-tag">Copywriting</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        </main>
+    <!-- FOOTER -->
+    <footer>
+        <a href="mailto:leon.roettger@gmx.net" class="btn-main" data-lang="de">Kontakt aufnehmen</a>
+        <a href="mailto:leon.roettger@gmx.net" class="btn-main" data-lang="en">Get in touch</a>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/leon-r%C3%B6ttger-23680220b/" target="_blank">LinkedIn</a>
+        </div>
+        
+        <div class="legal-footer">
+            <a onclick="openModal('impressum')" data-lang="de">Impressum</a>
+            <a onclick="openModal('impressum')" data-lang="en">Legal Notice</a>
+            <a onclick="openModal('privacy')" data-lang="de">Datenschutz</a>
+            <a onclick="openModal('privacy')" data-lang="en">Privacy Policy</a>
+        </div>
+
+        <p style="margin-top: 40px; font-size: 0.65rem; color: #222;">&copy; 2026 Leon Röttger</p>
+    </footer>
+
+    <!-- MODALS -->
+    <div id="modal-impressum" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('impressum')">&times;</span>
+            <h2 data-lang="de">Impressum</h2>
+            <h2 data-lang="en">Legal Notice</h2>
+            <p>Leon Röttger</p>
+            <p>E-Mail: leon.roettger@gmx.net<br>Telefon: +49 176 90778876</p>
+            <p data-lang="de">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV: Leon Röttger (Anschrift wie oben).</p>
+            <p data-lang="en">Responsible for the content according to § 18 Abs. 2 MStV: Leon Röttger (Address as above).</p>
+        </div>
+    </div>
+
+    <div id="modal-privacy" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('privacy')">&times;</span>
+            <h2 data-lang="de">Datenschutz</h2>
+            <h2 data-lang="en">Privacy Policy</h2>
+            
+            <h3 data-lang="de">1. Verantwortlicher</h3>
+            <h3 data-lang="en">1. Controller</h3>
+            <p data-lang="de">Leon Röttger (siehe Impressum).</p>
+            <p data-lang="en">Leon Röttger (see Legal Notice).</p>
+
+            <h3 data-lang="de">2. Hosting</h3>
+            <h3 data-lang="en">2. Hosting</h3>
+            <p data-lang="de">Diese Website wird über GitHub Pages (GitHub Inc., USA) gehostet. GitHub kann Server-Logdaten (IP-Adresse, Zeitstempel, aufgerufene Seite) erheben. Details: GitHub Privacy Statement.</p>
+            <p data-lang="en">This website is hosted via GitHub Pages (GitHub Inc., USA). GitHub may collect server log data (IP address, timestamp, page accessed). Details: GitHub Privacy Statement.</p>
+
+            <h3 data-lang="de">3. Externe Inhalte</h3>
+            <h3 data-lang="en">3. External Content</h3>
+            <p data-lang="de">Die Seite bindet YouTube-Videos (Google Ireland Ltd.) und Google Fonts ein. Beim Aufruf können Daten an Google übermittelt werden. Mehr Infos: Google Datenschutz.</p>
+            <p data-lang="en">The site embeds YouTube videos (Google Ireland Ltd.) and Google Fonts. When accessed, data may be transmitted to Google. More info: Google Privacy Policy.</p>
+
+            <h3 data-lang="de">4. Ihre Rechte</h3>
+            <h3 data-lang="en">4. Your Rights</h3>
+            <p data-lang="de">Auskunft, Berichtigung, Löschung, Einschränkung und Widerspruch gemäß DSGVO. Kontakt: leon.roettger@gmx.net</p>
+            <p data-lang="en">Information, correction, deletion, restriction, and objection according to GDPR. Contact: leon.roettger@gmx.net</p>
+        </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const langDeBtn = document.getElementById('lang-de-btn');
-            const langEnBtn = document.getElementById('lang-en-btn');
-            function setLanguage(lang) {
-                document.querySelectorAll('[data-lang]').forEach(el => {
-                    el.style.display = (el.dataset.lang === lang) ? 'block' : 'none';
-                    if (el.tagName === 'SPAN') {
-                        if (el.style.display === 'block') el.style.display = 'inline';
-                    }
-                });
-                langDeBtn.style.borderColor = lang === 'de' ? '#d4af37' : '#444';
-                langEnBtn.style.borderColor = lang === 'en' ? '#d4af37' : '#444';
+        const btnDe = document.getElementById('btn-de');
+        const btnEn = document.getElementById('btn-en');
+        const body = document.body;
+
+        function setLang(lang) {
+            if (lang === 'en') {
+                body.classList.add('lang-en');
+                btnEn.classList.add('active');
+                btnDe.classList.remove('active');
+            } else {
+                body.classList.remove('lang-en');
+                btnDe.classList.add('active');
+                btnEn.classList.remove('active');
             }
-            langDeBtn.addEventListener('click', () => setLanguage('de'));
-            langEnBtn.addEventListener('click', () => setLanguage('en'));
-            setLanguage('de');
-        });
+            localStorage.setItem('portfolio-lang', lang);
+        }
+
+        btnDe.addEventListener('click', () => setLang('de'));
+        btnEn.addEventListener('click', () => setLang('en'));
+
+        const savedLang = localStorage.getItem('portfolio-lang');
+        if (savedLang) setLang(savedLang);
+
+        // Modal Functions
+        function openModal(id) {
+            document.getElementById('modal-' + id).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(id) {
+            document.getElementById('modal-' + id).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
     </script>
 
 </body>
