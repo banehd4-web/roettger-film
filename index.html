@@ -106,8 +106,9 @@
         .insta-container { width: 100%; height: 650px; overflow: hidden; background: #fff; }
         .insta-container iframe { width: 100%; height: 100%; border: 0; }
 
-        .work-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 1; transition: var(--transition-smooth); padding: 32px; text-align: center; pointer-events: none; }
-        .work-item:hover .work-overlay { opacity: 0; }
+        .work-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 1; transition: var(--transition-smooth); padding: 32px; text-align: center; pointer-events: auto; }
+        .work-item:not(.embed-item):hover .work-overlay { opacity: 0; pointer-events: none; }
+        .work-item.embed-item.hovered .work-overlay { opacity: 0; pointer-events: none; }
         
         .work-overlay h3 { font-size: 1.4rem; margin-bottom: 8px; color: #fff; }
         .work-overlay p { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
@@ -182,10 +183,10 @@
             <a href="mailto:leon.roettger@gmx.net" class="btn-main" data-lang="de">Kontakt aufnehmen</a>
             <a href="mailto:leon.roettger@gmx.net" class="btn-main" data-lang="en">Get in touch</a>
             <div class="btn-secondary-group">
-                <a href="Lebenslauf_Leon_Roettger.pdf" target="_blank" class="btn-secondary" data-lang="de">Lebenslauf (PDF)</a>
-                <a href="Lebenslauf_Leon_Roettger.pdf" target="_blank" class="btn-secondary" data-lang="en">Resume (PDF)</a>
-                <a href="Zeugnisse_Referenzen.pdf" target="_blank" class="btn-secondary" data-lang="de">Zeugnisse & Referenzen (PDF)</a>
-                <a href="Zeugnisse_Referenzen.pdf" target="_blank" class="btn-secondary" data-lang="en">Certificates & References (PDF)</a>
+                <a href="lebenslauf.pdf" target="_blank" class="btn-secondary" data-lang="de">Lebenslauf (PDF)</a>
+                <a href="lebenslauf.pdf" target="_blank" class="btn-secondary" data-lang="en">Resume (PDF)</a>
+                <a href="Referenzen%20%26%20Zeugnisse.pdf" target="_blank" class="btn-secondary" data-lang="de">Zeugnisse & Referenzen (PDF)</a>
+                <a href="Referenzen%20%26%20Zeugnisse.pdf" target="_blank" class="btn-secondary" data-lang="en">Certificates & References (PDF)</a>
             </div>
         </div>
     </section>
@@ -531,6 +532,24 @@
                 document.body.style.overflow = 'auto';
             }
         }
+
+        // Steuerung der Overlay-Sichtbarkeit für eingebettete Medien (YouTube & Instagram iframes)
+        document.addEventListener('mouseover', (e) => {
+            const targetWorkItem = e.target.closest('.work-item.embed-item');
+            document.querySelectorAll('.work-item.embed-item').forEach(item => {
+                if (item === targetWorkItem) {
+                    item.classList.add('hovered');
+                } else {
+                    item.classList.remove('hovered');
+                }
+            });
+        });
+
+        document.addEventListener('mouseleave', () => {
+            document.querySelectorAll('.work-item.embed-item').forEach(item => {
+                item.classList.remove('hovered');
+            });
+        });
     </script>
 
 </body>
