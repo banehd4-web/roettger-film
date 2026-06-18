@@ -115,7 +115,7 @@
 
         /* --- Experience Blocks --- */
         .applied-experience { border-left: 1px solid var(--border); padding-left: 24px; margin-top: 32px; max-width: 850px; margin-bottom: 48px; }
-        .applied-label { font-size: 1.1rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; display: block; font-weight: 600; }
+        .applied-label, .section-label { font-size: 1.1rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; display: block; font-weight: 600; }
         .exp-item { margin-bottom: 28px; }
         .exp-item h4 { font-size: 1.05rem; margin-bottom: 2px; }
         .exp-item .meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 10px; }
@@ -214,9 +214,10 @@
             <!-- The White Line -->
             <div class="work-item" style="background-color: var(--bg-secondary); display: flex; align-items: center; justify-content: center; padding: 32px; text-align: center;">
                 <div class="work-overlay" style="opacity: 1; position: relative; background: none;">
-                    <span class="section-label" style="margin-bottom: 12px;" data-lang="de">Drehbuchprojekt (Spec Script)</span>
-                    <span class="section-label" style="margin-bottom: 12px;" data-lang="en">Spec Script</span>
-                    <h3>The White Line (AT)</h3>
+                    <div class="section-label" style="margin-bottom: 12px;" data-lang="de">Drehbuchprojekt (Spec Script)</div>
+                    <div class="section-label" style="margin-bottom: 12px;" data-lang="en">Spec Script</div>
+                    <h3 data-lang="de">The White Line (AT)</h3>
+                    <h3 data-lang="en">The White Line (WT)</h3>
                     <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-top: 8px;" data-lang="de">Status: Treatment-Phase</p>
                     <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-top: 8px;" data-lang="en">Status: Treatment Phase</p>
                 </div>
@@ -224,8 +225,8 @@
         </div>
 
         <div class="applied-experience">
-            <span class="applied-label" data-lang="de">Angewandt in</span>
-            <span class="applied-label" data-lang="en">Applied in</span>
+            <div class="applied-label" data-lang="de">Angewandt in</div>
+            <div class="applied-label" data-lang="en">Applied in</div>
             
             <div class="exp-item">
                 <h4 data-lang="de">Social Media Manager</h4>
@@ -282,7 +283,7 @@
                     <p data-lang="de">Event-Support: Werkstattgespräch</p>
                     <p data-lang="en">Event Support: Workshop Talk</p>
                     <span style="font-size: 0.75rem; margin-top: 10px; color: #888;" data-lang="de">Tätigkeit: Gästemanagement, tech. Support & Floormanagement</span>
-                    <span style="font-size: 0.75rem; margin-top: 10px; color: #888;" data-lang="en">Guest Management, tech support & floor management</span>
+                    <span style="font-size: 0.75rem; margin-top: 10px; color: #888;" data-lang="en">Task: Guest management, technical support & floor management</span>
                 </div>
             </div>
             <!-- Instagram 1 -->
@@ -291,9 +292,9 @@
                     <iframe src="https://www.instagram.com/p/C74B9NyolwZ/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
                 </div>
                 <div class="work-overlay">
-                    <h3 data-lang="de">Social Media Campaigns</h3>
+                    <h3 data-lang="de">Social-Media-Kampagnen</h3>
                     <h3 data-lang="en">Social Media Campaigns</h3>
-                    <p data-lang="de">Content Creation & Asset Design</p>
+                    <p data-lang="de">Content-Erstellung & Asset-Design</p>
                     <p data-lang="en">Content Creation & Asset Design</p>
                     <span style="font-size: 0.75rem; margin-top: 10px; color: #888;">Busch Media Group</span>
                 </div>
@@ -304,9 +305,9 @@
                     <iframe src="https://www.instagram.com/reel/C8cYWfGOe5k/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
                 </div>
                 <div class="work-overlay">
-                    <h3 data-lang="de">Social Media Campaigns</h3>
+                    <h3 data-lang="de">Social-Media-Kampagnen</h3>
                     <h3 data-lang="en">Social Media Campaigns</h3>
-                    <p data-lang="de">Content Creation & Asset Design</p>
+                    <p data-lang="de">Content-Erstellung & Asset-Design</p>
                     <p data-lang="en">Content Creation & Asset Design</p>
                     <span style="font-size: 0.75rem; margin-top: 10px; color: #888;">Busch Media Group</span>
                 </div>
@@ -314,8 +315,8 @@
         </div>
 
         <div class="applied-experience">
-            <span class="applied-label" data-lang="de">Angewandt in</span>
-            <span class="applied-label" data-lang="en">Applied in</span>
+            <div class="applied-label" data-lang="de">Angewandt in</div>
+            <div class="applied-label" data-lang="en">Applied in</div>
 
             <div class="exp-item">
                 <h4 data-lang="de">Freelancer Marketing & Kommunikation</h4>
@@ -346,15 +347,15 @@
                 <h4 data-lang="de">Werkstudent Redakteur & Theatrical Sales Manager</h4>
                 <h4 data-lang="en">Working Student Editor & Theatrical Sales Manager</h4>
                 <p class="meta">Busch Media Group, Hagen</p>
-                <p class="desc" data-lang="de">Adaption von Marketingkampagnen, Social-Media-Asset Erstellung und operatives Kampagnen-Management. B2B-Kundenbetreuung inklusive Konditionsverhandlung.</p>
+                <p class="desc" data-lang="de">Adaption von Marketingkampagnen, Social-Media-Asset-Erstellung und operatives Kampagnenmanagement. B2B-Kundenbetreuung inklusive Konditionsverhandlungen.</p>
                 <p class="desc" data-lang="en">Adaptation of marketing campaigns, creation of social media assets, and operational campaign management. B2B customer care including negotiation of terms.</p>
             </div>
         </div>
 
         <!-- BETREUTE FILME -->
         <div class="credits-list" style="margin-top: 30px;">
-            <span class="applied-label" data-lang="de">Betreute Filme (Auswahl)</span>
-            <span class="applied-label" data-lang="en">Managed Films (Selected)</span>
+            <div class="applied-label" data-lang="de">Betreute Filme (Auswahl)</div>
+            <div class="applied-label" data-lang="en">Managed Films (Selected)</div>
 
             <div class="credit-row">
                 <div class="credit-year">2025</div>
@@ -364,7 +365,8 @@
             </div>
             <div class="credit-row">
                 <div class="credit-year">2024</div>
-                <div class="credit-title">Dune Teil 2</div>
+                <div class="credit-title" data-lang="de">Dune Teil 2</div>
+                <div class="credit-title" data-lang="en">Dune: Part Two</div>
                 <div class="credit-desc" data-lang="de">Mitwirkung an der deutschen Oscar-Kampagne (WBD)</div>
                 <div class="credit-desc" data-lang="en">Contribution to the German Oscar Campaign (WBD)</div>
             </div>
@@ -376,7 +378,8 @@
             </div>
             <div class="credit-row">
                 <div class="credit-year">2020</div>
-                <div class="credit-title">The Flood - Melodie der Rache</div>
+                <div class="credit-title" data-lang="de">The Flood - Melodie der Rache</div>
+                <div class="credit-title" data-lang="en">The Flood</div>
                 <div class="credit-desc" data-lang="de">Trailerschnitt & -premiere (Filmstarts), Social Media Marketing</div>
                 <div class="credit-desc" data-lang="en">Trailer Editing & Premiere (Filmstarts), Social Media Marketing</div>
             </div>
@@ -393,16 +396,16 @@
     <section class="container" style="padding-top: 0; padding-bottom: 60px;">
         <div class="experience-grid">
             <div>
-                <span class="section-label" data-lang="de">Ausbildung</span>
-                <span class="section-label" data-lang="en">Education</span>
+                <div class="section-label" data-lang="de">Ausbildung</div>
+                <div class="section-label" data-lang="en">Education</div>
                 <h4 data-lang="de">Universität Siegen</h4>
                 <h4 data-lang="en">University of Siegen</h4>
                 <p class="meta" data-lang="de">B.A. Medienwissenschaften und Literatur, Kultur & Medien</p>
                 <p class="meta" data-lang="en">B.A. Media Studies and Literature, Culture & Media</p>
                 
                 <div style="margin-top: 32px;">
-                    <span class="section-label" data-lang="de">Sprachkenntnisse</span>
-                    <span class="section-label" data-lang="en">Languages</span>
+                    <div class="section-label" data-lang="de">Sprachkenntnisse</div>
+                    <div class="section-label" data-lang="en">Languages</div>
                     <ul style="list-style: none; font-size: 0.9rem; line-height: 1.8; color: var(--text-muted);">
                         <li data-lang="de">Deutsch (Muttersprache)</li>
                         <li data-lang="en">German (Native)</li>
@@ -414,8 +417,8 @@
                 </div>
             </div>
             <div>
-                <span class="section-label" data-lang="de">Kompetenzen</span>
-                <span class="section-label" data-lang="en">Skills</span>
+                <div class="section-label" data-lang="de">Kompetenzen</div>
+                <div class="section-label" data-lang="en">Skills</div>
                 <div class="skill-list">
                     <span class="skill-tag">Meta Business Suite</span>
                     <span class="skill-tag">Adobe Creative Cloud</span>
