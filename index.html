@@ -92,6 +92,53 @@
         .btn-secondary { font-size: 0.8rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; border-bottom: 1px solid var(--text-main); padding-bottom: 2px; }
         .btn-secondary:hover { color: var(--text-muted); border-color: var(--text-muted); }
 
+        /* --- Tooltip for Documents on Request --- */
+        .tooltip-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip-text {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background-color: #141414;
+            color: #ffffff;
+            padding: 8px 14px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            max-width: 280px;
+            width: max-content;
+            white-space: normal;
+            text-align: center;
+            letter-spacing: normal;
+            text-transform: none;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all 0.25s ease-out;
+            z-index: 100;
+        }
+        .tooltip-text::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: #141414 transparent transparent transparent;
+        }
+        .tooltip-wrapper:hover .tooltip-text,
+        .tooltip-wrapper:focus-within .tooltip-text {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
         /* --- Section Titles --- */
         .section-title { font-size: 1.6rem; margin-bottom: 32px; border-bottom: 1px solid var(--border); padding-bottom: 12px; display: inline-block; }
 
@@ -185,10 +232,18 @@
             <a href="mailto:leon.roettger@gmx.net" class="btn-main" data-lang="de">Kontakt aufnehmen</a>
             <a href="mailto:leon.roettger@gmx.net" class="btn-main" data-lang="en">Get in touch</a>
             <div class="btn-secondary-group">
-                <a href="Leon%20R%C3%B6ttger%20Lebenslauf.pdf" target="_blank" class="btn-secondary" data-lang="de">Lebenslauf (PDF)</a>
-                <a href="Leon%20R%C3%B6ttger%20Lebenslauf.pdf" target="_blank" class="btn-secondary" data-lang="en">Resume (PDF)</a>
-                <a href="Zeugnisse%20und%20Referenzen.pdf" target="_blank" class="btn-secondary" data-lang="de">Zeugnisse & Referenzen (PDF)</a>
-                <a href="Zeugnisse%20und%20Referenzen.pdf" target="_blank" class="btn-secondary" data-lang="en">Certificates & References (PDF)</a>
+                <div class="tooltip-wrapper">
+                    <a href="mailto:leon.roettger@gmx.net?subject=Anfrage%20Lebenslauf%20-%20Leon%20R%C3%B6ttger" class="btn-secondary" data-lang="de">Lebenslauf (auf Anfrage)</a>
+                    <a href="mailto:leon.roettger@gmx.net?subject=Request%20Resume%20-%20Leon%20R%C3%B6ttger" class="btn-secondary" data-lang="en">Resume (on request)</a>
+                    <span class="tooltip-text" data-lang="de">Gerne verschicke ich Lebenslauf und Referenzen auf Anfrage</span>
+                    <span class="tooltip-text" data-lang="en">Resume and references are gladly provided upon request</span>
+                </div>
+                <div class="tooltip-wrapper">
+                    <a href="mailto:leon.roettger@gmx.net?subject=Anfrage%20Zeugnisse%20%26%20Referenzen%20-%20Leon%20R%C3%B6ttger" class="btn-secondary" data-lang="de">Zeugnisse & Referenzen (auf Anfrage)</a>
+                    <a href="mailto:leon.roettger@gmx.net?subject=Request%20Certificates%20%26%20References%20-%20Leon%20R%C3%B6ttger" class="btn-secondary" data-lang="en">Certificates & References (on request)</a>
+                    <span class="tooltip-text" data-lang="de">Gerne verschicke ich Lebenslauf und Referenzen auf Anfrage</span>
+                    <span class="tooltip-text" data-lang="en">Resume and references are gladly provided upon request</span>
+                </div>
             </div>
         </div>
     </section>
